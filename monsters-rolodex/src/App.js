@@ -9,7 +9,7 @@ class App extends Component{
 
     this.state = {
        name: 'John Doe'
-    } // state is always a json object.
+    }; // state is always a json object.
   }
 
   render() {
@@ -22,8 +22,19 @@ class App extends Component{
             Hi {this.state.name}
           </p>
 
-          <button>Change Name</button>
+          <button onClick={() => {
 
+            /* 
+            React will not detect this way of changing the and re-render the object
+
+            this.state.name = 'Jane Doe'
+            console.log(this.state.name);
+            */
+
+            this.setState({name: 'Jane Doe'})
+
+          }}>Change Name</button>
+          {/* EventHandler */}
 
         </header>
       </div>
