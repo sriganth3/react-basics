@@ -8,14 +8,28 @@ class App extends Component{
     super();
 
     this.state = {
-      
+      "monsters": [
+          {
+            name: 'Phineas'
+          },
+          {
+            name: 'Ferb'
+          },
+          {
+            name: 'Perry'
+          }
+      ]
     }; // state is always a json object.
   }
 
   render() {
     return (
       <div className="App">
-          
+        {
+          this.state.monsters.map((monster) => {
+          return <h1>{monster.name}</h1>
+        })
+        };
       </div>
     );
   }
