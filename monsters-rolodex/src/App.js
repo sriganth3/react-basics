@@ -8,17 +8,23 @@ class App extends Component{
 
     this.state = {
       monsters: [],
+      searchString: ''
     }; // state is always a json object.
+
+    console.log('constructor');
   }
 
   componentDidMount() {
+    
+    console.log('componentDidMount');
+
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => {
         return response.json();
       })
       .then((users) => this.setState(  
       () => {
-        return {monsters: users};
+        return {monsters: users, filteredMonsters: users};
       }, 
 
       () => {
@@ -27,10 +33,30 @@ class App extends Component{
   }
 
   render() {
+
+    console.log('render');
+
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(this.state.searchString);
+    });
+    
     return (
       <div className="App">
+
+        <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
+          console.log(event.target.value);
+
+          const searchString = event.target.value.toLocaleLowerCase();
+
+          this.setState(() => {
+            return { searchString };
+          })
+        }} />
+        
         {
-          this.state.monsters.map((monster) => {
+          filteredMonsters
+          // .filter((monster) => monster.name.includes(event.target.value))
+          .map((monster) => {
 
           return  <div key = {monster.id} >
                     <h1> {monster.name} </h1>
@@ -40,6 +66,16 @@ class App extends Component{
       </div>
     );
   }
+
+  /*
+
+  Lifecycle of components
+  1. constructor
+  2. render
+  3. componentDidMount
+  4. render
+
+  */
 
 }
 
