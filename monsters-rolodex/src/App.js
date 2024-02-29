@@ -12,12 +12,12 @@ class App extends Component{
       searchString: ''
     }; // state is always a json object.
 
-    console.log('constructor');
+    // console.log('constructor');
   }
 
   componentDidMount() {
     
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
 
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => {
@@ -29,12 +29,12 @@ class App extends Component{
       }, 
 
       () => {
-        console.log(this.state);
+        // console.log(this.state);
       }));
   }
 
   onSearchChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
 
     const searchString = event.target.value.toLocaleLowerCase();
 
@@ -45,7 +45,7 @@ class App extends Component{
 
   render() {
 
-    console.log('render');
+    console.log('render from App.js');
 
     const { monsters, searchString } = this.state;
     const { onSearchChange } = this;
@@ -61,18 +61,8 @@ class App extends Component{
         type='search' 
         placeholder='search monsters' 
         onChange={onSearchChange} />
-        
-        {/* {
-          filteredMonsters
-          .map((monster) => {
 
-          return  <div key = {monster.id} >
-                    <h1> {monster.name} </h1>
-                  </div>
-        })
-        } */}
-
-        <CardList/>
+        <CardList monsters = {filteredMonsters} />
       </div>
     );
   }
