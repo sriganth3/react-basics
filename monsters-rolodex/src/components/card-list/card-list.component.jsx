@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class CardList extends Component{
     render(){
-        const { monsters }= this.props;
+        const { monsters } = this.props;
         console.log('render from cardList');
         return (
 
@@ -18,9 +18,7 @@ class CardList extends Component{
             }
         </div>
         );
-        
-        
-        
+    
         // we must have only one parent/top level html component
     }
 }
